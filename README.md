@@ -16,6 +16,56 @@ Project ini merupakan implementasi komunikasi MQTT menggunakan **Python** dan **
 
 ---
 
+## 🏗️ Arsitektur Sistem
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                  Model Komunikasi MQTT pada Smart Room Monitoring           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────┐     MQTT Publish      ┌──────────────────────────┐
+│  Publisher Python        │  temperature,         │  Mosquitto Broker        │
+│  Sensor Virtual          │  humidity, light      │  localhost:1883          │
+│  Smart Room              ├─────────────────────>│                          │
+└──────────────────────────┘                       └──────────────────────────┘
+                                                            │
+                ┌───────────────────────────────────────────┤
+                │        MQTT Message Delivery             │
+                │                                           │
+         ┌──────▼────────────────────────────────┐         │
+         │      Published Topics                  │         │
+         ├──────────────────────────────────────┤         │
+         │ • smartroom/room1/temperature        │         │
+         │ • smartroom/room1/humidity           │         │
+         │ • smartroom/room1/light              │         │
+         └──────────────────────────────────────┘         │
+                                                            │
+                ┌───────────────────────────────────────────┘
+                │
+         ┌──────▼────────────────────────────────┐
+         │  Subscriber Python                     │
+         │  Monitoring Application                │
+         └──────────────────────────────────────┘
+
+         ┌──────────────────────────────────────────┐
+         │   Subscriber Wildcard Topics             │
+         ├──────────────────────────────────────────┤
+         │ • smartroom/+/temperature                │
+         │ • smartroom/#                            │
+         └──────────────────────────────────────────┘
+```
+
+**Alur Komunikasi:**
+
+1. **Publisher** mengumpulkan data sensor (temperature, humidity, light) dari virtual smart room
+2. **Publish** pesan ke Mosquitto Broker pada topics spesifik dengan format hierarki
+3. **Mosquitto Broker** menerima dan menyimpan pesan di memory
+4. **Subscriber** terdaftar pada topics tertentu (dengan atau tanpa wildcards)
+5. **Broker** mengirimkan pesan ke semua subscriber yang sesuai
+6. **Monitoring Application** menerima dan memproses data real-time
+
+---
+
 ## 🛠️ Tech Stack
 
 | Komponen | Teknologi |
