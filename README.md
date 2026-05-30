@@ -18,42 +18,8 @@ Project ini merupakan implementasi komunikasi MQTT menggunakan **Python** dan **
 
 ## 🏗️ Arsitektur Sistem
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                  Model Komunikasi MQTT pada Smart Room Monitoring           │
-└─────────────────────────────────────────────────────────────────────────────┘
+<img width="1178" height="308" alt="model_komunikasi_mqtt" src="https://github.com/user-attachments/assets/4669b1ca-6f77-428f-ba4c-c08e784bbb64" />
 
-┌──────────────────────────┐     MQTT Publish      ┌──────────────────────────┐
-│  Publisher Python        │  temperature,         │  Mosquitto Broker        │
-│  Sensor Virtual          │  humidity, light      │  localhost:1883          │
-│  Smart Room              ├─────────────────────>│                          │
-└──────────────────────────┘                       └──────────────────────────┘
-                                                            │
-                ┌───────────────────────────────────────────┤
-                │        MQTT Message Delivery             │
-                │                                           │
-         ┌──────▼────────────────────────────────┐         │
-         │      Published Topics                  │         │
-         ├──────────────────────────────────────┤         │
-         │ • smartroom/room1/temperature        │         │
-         │ • smartroom/room1/humidity           │         │
-         │ • smartroom/room1/light              │         │
-         └──────────────────────────────────────┘         │
-                                                            │
-                ┌───────────────────────────────────────────┘
-                │
-         ┌──────▼────────────────────────────────┐
-         │  Subscriber Python                     │
-         │  Monitoring Application                │
-         └──────────────────────────────────────┘
-
-         ┌──────────────────────────────────────────┐
-         │   Subscriber Wildcard Topics             │
-         ├──────────────────────────────────────────┤
-         │ • smartroom/+/temperature                │
-         │ • smartroom/#                            │
-         └──────────────────────────────────────────┘
-```
 
 **Alur Komunikasi:**
 
