@@ -1,5 +1,13 @@
 # 🏠 MQTT Smart Room Monitoring
 
+![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white)
+![Mosquitto](https://img.shields.io/badge/Mosquitto-Latest-green?logo=mosquitto&logoColor=white)
+![MQTT](https://img.shields.io/badge/Protocol-MQTT-orange)
+![paho-mqtt](https://img.shields.io/badge/Library-paho--mqtt-yellow?logo=python)
+![License](https://img.shields.io/badge/License-Academic-lightgrey)
+![Status](https://img.shields.io/badge/Status-Production--Ready-brightgreen)
+![Smart Room](https://img.shields.io/badge/Project-Smart%20Room-blue)
+
 > Implementasi sistem komunikasi MQTT untuk Smart Room Monitoring menggunakan Python dan Mosquitto Broker
 
 ## 📋 Deskripsi Singkat
@@ -12,7 +20,7 @@ Project ini merupakan implementasi komunikasi MQTT menggunakan **Python** dan **
 
 | Komponen | Teknologi |
 |----------|-----------|
-| **Bahasa Pemrograman** | Python 3.14 |
+| **Bahasa Pemrograman** | Python 3.10+ |
 | **Message Broker** | Mosquitto Broker |
 | **MQTT Library** | paho-mqtt |
 | **Protocol** | MQTT (Message Queuing Telemetry Transport) |
