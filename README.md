@@ -1,106 +1,161 @@
-# MQTT Smart Room Monitoring
+# 🏠 MQTT Smart Room Monitoring
 
-## Deskripsi
-Project ini merupakan implementasi komunikasi MQTT menggunakan Python dan Mosquitto Broker pada studi kasus Smart Room Monitoring. Sistem menggunakan pola komunikasi publish-subscribe, di mana publisher mengirimkan data sensor virtual dan subscriber menerima data melalui broker MQTT.
+> Implementasi sistem komunikasi MQTT untuk Smart Room Monitoring menggunakan Python dan Mosquitto Broker
 
-## Tools dan Teknologi
-- Python 3.14
-- Mosquitto Broker
-- Library paho-mqtt
-- MQTT Protocol
+## 📋 Deskripsi Singkat
 
-## Struktur Folder
+Project ini merupakan implementasi komunikasi MQTT menggunakan **Python** dan **Mosquitto Broker** pada studi kasus Smart Room Monitoring. Sistem menggunakan pola komunikasi **publish-subscribe**, di mana publisher mengirimkan data dan subscriber menerima data secara real-time melalui broker MQTT.
 
-```text
-mqtt-smartroom-nabilla/
-├── code/
-├── screenshot/
-├── gambar/
-└── README.md
+---
+
+## 🛠️ Tech Stack
+
+| Komponen | Teknologi |
+|----------|-----------|
+| **Bahasa Pemrograman** | Python 3.14 |
+| **Message Broker** | Mosquitto Broker |
+| **MQTT Library** | paho-mqtt |
+| **Protocol** | MQTT (Message Queuing Telemetry Transport) |
+
+---
+
+## 📁 Struktur Proyek
+
+```
+MQTT_smartroom_CPS_Nabilla-Suci-Amanda/
+├── code/                    # Folder utama untuk semua script Python
+│   ├── subscriber_basic.py
+│   ├── publisher_basic.py
+│   ├── subscriber_qos.py
+│   ├── publisher_qos.py
+│   ├── subscriber_multitopic.py
+│   ├── publisher_multitopic.py
+│   ├── subscriber_wildcard_plus.py
+│   ├── publisher_wildcard_plus.py
+│   ├── subscriber_wildcard_hash.py
+│   └── publisher_wildcard_hash.py
+├── screenshot/              # Dokumentasi visual
+├── gambar/                  # Asset gambar
+├── README.md               # File ini
+└── requirements.txt        # Dependency list
 ```
 
-## Instalasi
+---
 
-Install library MQTT:
+## 🚀 Quick Start
+
+### 1️⃣ Instalasi Dependencies
 
 ```bash
+# Install MQTT Library
 pip install paho-mqtt
+
+# Atau menggunakan requirements.txt (jika ada)
+pip install -r requirements.txt
 ```
 
-Pastikan Mosquitto Broker sudah terinstall.
+**Prasyarat:** Pastikan Mosquitto Broker sudah terinstall dan berjalan di sistem Anda.
 
-## Menjalankan Program
+---
 
-### Skenario 1 – Basic Publisher Subscriber
+## 📚 Skenario & Cara Menjalankan
 
-Subscriber:
+### Skenario 1: Basic Publisher-Subscriber
+Implementasi dasar komunikasi MQTT dengan satu publisher dan satu subscriber.
 
 ```bash
+# Terminal 1 - Subscriber
 python code/subscriber_basic.py
-```
 
-Publisher:
-
-```bash
+# Terminal 2 - Publisher
 python code/publisher_basic.py
 ```
 
-### Skenario 2 – QoS
+---
 
-Subscriber:
+### Skenario 2: QoS (Quality of Service)
+Pengujian berbagai level QoS untuk memastikan delivery pesan.
 
 ```bash
+# Terminal 1 - Subscriber
 python code/subscriber_qos.py
-```
 
-Publisher:
-
-```bash
+# Terminal 2 - Publisher
 python code/publisher_qos.py
 ```
 
-### Skenario 3 – Multi Topic
+---
 
-Subscriber:
+### Skenario 3: Multi Topic
+Publisher dan subscriber berkomunikasi melalui multiple topics.
 
 ```bash
+# Terminal 1 - Subscriber
 python code/subscriber_multitopic.py
-```
 
-Publisher:
-
-```bash
+# Terminal 2 - Publisher
 python code/publisher_multitopic.py
 ```
 
-### Skenario 4 – Wildcard +
+---
 
-Subscriber:
+### Skenario 4: Wildcard (+)
+Menggunakan wildcard `+` untuk subscribe ke single-level topics.
 
 ```bash
+# Terminal 1 - Subscriber
 python code/subscriber_wildcard_plus.py
-```
 
-Publisher:
-
-```bash
+# Terminal 2 - Publisher
 python code/publisher_wildcard_plus.py
 ```
 
-### Skenario 5 – Wildcard #
+---
 
-Subscriber:
+### Skenario 5: Wildcard (#)
+Menggunakan wildcard `#` untuk subscribe ke multi-level topics.
 
 ```bash
+# Terminal 1 - Subscriber
 python code/subscriber_wildcard_hash.py
-```
 
-Publisher:
-
-```bash
+# Terminal 2 - Publisher
 python code/publisher_wildcard_hash.py
 ```
 
-## Author
+---
 
-Nabilla Suci Amanda - 235150301111044
+## 💡 Tips Menjalankan
+
+- **Buka minimal 2 terminal** untuk menjalankan subscriber dan publisher secara bersamaan
+- **Jalankan subscriber terlebih dahulu** sebelum publisher agar tidak kehilangan pesan
+- **Monitor output** untuk melihat proses publish-subscribe terjadi
+- Gunakan `Ctrl+C` untuk menghentikan program
+
+---
+
+## 📊 Konsep MQTT yang Diimplementasikan
+
+- ✅ **Publish-Subscribe Pattern** - Decoupled communication
+- ✅ **QoS Levels** - Quality of Service (0, 1, 2)
+- ✅ **Topic Hierarchies** - Organized message routing
+- ✅ **Wildcards** - Flexible topic subscription
+- ✅ **Real-time Communication** - Live data streaming
+
+---
+
+## 👤 Author
+
+**Nabilla Suci Amanda**  
+NIM: 235150301111044
+
+---
+
+## 📝 License
+
+Proyekini dibuat untuk keperluan akademis - Cyber Physical System (CPS)
+
+---
+
+**Last Updated:** 2026  
+*Smart Room Monitoring System via MQTT*
