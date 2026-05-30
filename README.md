@@ -4,7 +4,7 @@
 
 ## 📋 Deskripsi Singkat
 
-Project ini merupakan implementasi komunikasi MQTT menggunakan **Python** dan **Mosquitto Broker** pada studi kasus Smart Room Monitoring. Sistem menggunakan pola komunikasi **publish-subscribe**, di mana publisher mengirimkan data dan subscriber menerima data secara real-time melalui broker MQTT.
+Project ini merupakan implementasi komunikasi MQTT menggunakan **Python** dan **Mosquitto Broker** pada studi kasus Smart Room Monitoring. Sistem menggunakan pola komunikasi **publish-subscribe**, [...]
 
 ---
 
@@ -44,30 +44,74 @@ MQTT_smartroom_CPS_Nabilla-Suci-Amanda/
 
 ## 🚀 Quick Start
 
+### 0️⃣ Install Mosquitto Broker
+
+**Windows:**
+1. Download dari: https://mosquitto.org/download/
+2. Install dengan default settings
+3. Mosquitto akan ter-install di `C:\Program Files\mosquitto\`
+
+**macOS:**
+```bash
+brew install mosquitto
+```
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt-get install mosquitto
+sudo systemctl start mosquitto
+```
+
+---
+
 ### 1️⃣ Instalasi Dependencies
 
 ```bash
 # Install MQTT Library
 pip install paho-mqtt
 
-# Atau menggunakan requirements.txt (jika ada)
+# Atau menggunakan requirements.txt
 pip install -r requirements.txt
 ```
 
-**Prasyarat:** Pastikan Mosquitto Broker sudah terinstall dan berjalan di sistem Anda.
+---
+
+### 2️⃣ Jalankan Mosquitto Broker
+
+**Windows (Command Prompt/PowerShell):**
+```bash
+mosquitto -v
+```
+
+Jika command tidak ditemukan, jalankan dari folder instalasi:
+```bash
+"C:\Program Files\mosquitto\mosquitto.exe"
+```
+
+**macOS/Linux:**
+```bash
+mosquitto -v
+```
+
+✅ Broker seharusnya running di port **1883** (localhost:1883)
 
 ---
 
 ## 📚 Skenario & Cara Menjalankan
 
+> ⚠️ **PENTING:** Jalankan Mosquitto Broker terlebih dahulu (lihat step 2️⃣ di atas), kemudian buka **minimal 2 terminal baru** untuk subscriber dan publisher
+
 ### Skenario 1: Basic Publisher-Subscriber
 Implementasi dasar komunikasi MQTT dengan satu publisher dan satu subscriber.
 
 ```bash
-# Terminal 1 - Subscriber
+# Terminal 1 - Mosquitto Broker
+mosquitto -v
+
+# Terminal 2 - Subscriber
 python code/subscriber_basic.py
 
-# Terminal 2 - Publisher
+# Terminal 3 - Publisher
 python code/publisher_basic.py
 ```
 
@@ -77,10 +121,13 @@ python code/publisher_basic.py
 Pengujian berbagai level QoS untuk memastikan delivery pesan.
 
 ```bash
-# Terminal 1 - Subscriber
+# Terminal 1 - Mosquitto Broker
+mosquitto -v
+
+# Terminal 2 - Subscriber
 python code/subscriber_qos.py
 
-# Terminal 2 - Publisher
+# Terminal 3 - Publisher
 python code/publisher_qos.py
 ```
 
@@ -90,10 +137,13 @@ python code/publisher_qos.py
 Publisher dan subscriber berkomunikasi melalui multiple topics.
 
 ```bash
-# Terminal 1 - Subscriber
+# Terminal 1 - Mosquitto Broker
+mosquitto -v
+
+# Terminal 2 - Subscriber
 python code/subscriber_multitopic.py
 
-# Terminal 2 - Publisher
+# Terminal 3 - Publisher
 python code/publisher_multitopic.py
 ```
 
@@ -103,10 +153,13 @@ python code/publisher_multitopic.py
 Menggunakan wildcard `+` untuk subscribe ke single-level topics.
 
 ```bash
-# Terminal 1 - Subscriber
+# Terminal 1 - Mosquitto Broker
+mosquitto -v
+
+# Terminal 2 - Subscriber
 python code/subscriber_wildcard_plus.py
 
-# Terminal 2 - Publisher
+# Terminal 3 - Publisher
 python code/publisher_wildcard_plus.py
 ```
 
@@ -116,10 +169,13 @@ python code/publisher_wildcard_plus.py
 Menggunakan wildcard `#` untuk subscribe ke multi-level topics.
 
 ```bash
-# Terminal 1 - Subscriber
+# Terminal 1 - Mosquitto Broker
+mosquitto -v
+
+# Terminal 2 - Subscriber
 python code/subscriber_wildcard_hash.py
 
-# Terminal 2 - Publisher
+# Terminal 3 - Publisher
 python code/publisher_wildcard_hash.py
 ```
 
@@ -127,10 +183,25 @@ python code/publisher_wildcard_hash.py
 
 ## 💡 Tips Menjalankan
 
-- **Buka minimal 2 terminal** untuk menjalankan subscriber dan publisher secara bersamaan
-- **Jalankan subscriber terlebih dahulu** sebelum publisher agar tidak kehilangan pesan
+- **Buka minimal 3 terminal** untuk menjalankan:
+  1. Mosquitto Broker
+  2. Subscriber
+  3. Publisher
+- **Jalankan Mosquitto Broker terlebih dahulu** 
+- **Jalankan subscriber sebelum publisher** agar tidak kehilangan pesan
 - **Monitor output** untuk melihat proses publish-subscribe terjadi
 - Gunakan `Ctrl+C` untuk menghentikan program
+
+---
+
+## ⚠️ Troubleshooting
+
+| Error | Penyebab | Solusi |
+|-------|---------|--------|
+| `Command 'mosquitto' not found` | Mosquitto belum di PATH | Tambah ke Environment Variables atau jalankan dari folder instalasi |
+| `Connection refused [Errno 111]` | Mosquitto Broker tidak running | Buka terminal baru dan jalankan `mosquitto -v` |
+| `ModuleNotFoundError: No module named 'paho'` | paho-mqtt belum diinstall | Jalankan `pip install paho-mqtt` |
+| Subscriber tidak menerima pesan | Publisher berjalan sebelum subscriber | Jalankan subscriber dulu, tunggu sampai "Waiting for messages", baru jalankan publisher |
 
 ---
 
@@ -153,7 +224,7 @@ NIM: 235150301111044
 
 ## 📝 License
 
-Proyekini dibuat untuk keperluan akademis - Cyber Physical System (CPS)
+Project ini dibuat untuk keperluan akademis - Cyber Physical System (CPS)
 
 ---
 
